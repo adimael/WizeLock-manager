@@ -41,20 +41,24 @@ const Login = () => {
       setError("A senha deve ter pelo menos 6 caracteres!");
       return;
     }
-
+  
     setError(""); // Limpa o erro
     setLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulação de carregamento
       console.log("E-mail:", email);
       console.log("Senha:", senha);
       console.log("Mantenha-me conectado:", isChecked);
+  
+      // Navegar para o Dashboard
+      navigation.navigate("Dashboard"); 
     } catch (err) {
       console.error("Erro no login:", err);
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <KeyboardAvoidingView
@@ -79,7 +83,7 @@ const Login = () => {
             />
             <TouchableOpacity
               style={[Styles.button, loading && Styles.buttonDisabled]}
-              onPress={handleLogin}
+              onPress={() => navigation.navigate("Dashboard")}
               disabled={loading}
             >
               <Text style={Styles.buttonText}>
